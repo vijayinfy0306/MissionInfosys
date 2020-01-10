@@ -1,0 +1,14 @@
+select * from infy;
+
+declare
+cursor c is select marks from infy ;
+x number;
+begin
+open c;
+loop
+fetch c into x;
+exit when c %notfound; 
+dbms_output.put_line(c %rowcount||'   '||x);
+end loop;
+end;
+ 

@@ -1,0 +1,31 @@
+----------------ADD TWO VALUES USING A FUNCTION------------------------------
+
+create or replace function adds(i number,j number)return number is
+begin
+return i+j;
+end
+---------------OR -------------------------------------------------
+
+select adds(3,4) from dual;
+  
+---------------OR--------------------------------------------------
+
+declare
+k number;
+i number;
+j number;
+begin
+i:=:i;
+j:=:j;
+k:=adds(i,j);
+dbms_output.put_line('addition is:'||k);
+end
+
+----------------OR------------------------------------------------
+
+declare
+k number;
+begin
+k:=adds(4,5);
+dbms_output.put_line('addition is:'||k);
+end

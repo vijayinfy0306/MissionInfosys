@@ -1,0 +1,5 @@
+create table infy4(no number primary key,name varchar2(50),mobile number);
+create sequence a3 increment by 1 start with 1 maxvalue 999 nocache nocycle;
+insert into infy4 values(a3.nextval,'jaya',456);
+select * from infy4;
+create table infy5(no number references infy4, salary number,pan varchar2(50));

@@ -1,0 +1,77 @@
+select * from employee;
+
+
+####### usage of sequence:
+
+create sequence abc increment by 1 start with 4 maxvalue 999 no cache no cycle;
+select abc.currval from dual;
+select abc.nextval from dual;
+drop sequence abc;
+insert into employee values(abc.nextval,'krishna','m','30-jun-1998',50000)
+
+
+delete employee where no in(10,5,4,3);
+alter table employee add salary number;
+update employee set salary = 50000 where no=4;
+alter table employee add age int;
+update employee set age=(select trunc(months_between(sysdate,dob)/12) from dual) where no=3;
+update employee set dob='31-jan-1975' where no=4;
+update employee set salary= salary*1.25 where no in (1,2,3,4);
+create table pan(no number,pancard varchar2(50))
+insert into pan values(3,'BECD0987');
+select * from pan1;
+drop table pan;
+create table pan1(pancard varchar2(50))
+insert into pan1 values('BABCD0987');
+
+
+
+
+
+####### usage of index:
+
+create index abc on employee(dob);
+
+
+
+##### usage of tabs:
+
+select * from tabs;
+
+
+
+##### usage of Query inside a Query:
+
+select * from employee where salary=(select salary from (select distinct salary from employee order by salary asc) where rownum<=4 minus 
+select salary from (select distinct salary from employee order by salary asc) where rownum<=3);
+
+select * from employee where salary>10000 and age<25;
+
+
+      ##### query to increment the salary by 25% of all employees who's age<=25
+
+           update employee set salary=salary*1.25 where age in(select age from employee where age<=25)) where age<=25;
+           select * from employee;
+
+
+      ###### query to delete of all employees who's age>=27
+
+            delete employee where age>=27;
+
+
+
+##### usage of view:
+
+create view A1 as select no,name,gender,age from employee;
+create view A2 as select no,name,age from a1;
+select * from A2;
+update A2 set age=32 where no=3;
+alter table A2 add Pancard varchar2(50);
+drop view A2;
+select * from A1;
+
+
+###### Joining of table and stored in a view:
+
+select a.no,a.name,a.gender,a.dob,a.salary,a.age,b.pancard,b.no from employee a,pan b where a.no=b.no;
+

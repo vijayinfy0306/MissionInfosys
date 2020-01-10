@@ -1,0 +1,54 @@
+----------------------------------------------------------------------------ASSIGNMENT 1--------------------------------------------------------------------------------------
+
+create table employeee(empno number primary key,name varchar2(20),salary number,designation varchar2(20))
+
+insert into employeee values(4,'babu',40000,'Sr.Dev');
+
+insert into hydemployeee(empno,name,salary,designation) values(5,'mallik',38000,'Sr.Dev');
+
+update hydemployeee set dept='Govt' where empno=5;
+
+update hydemployeee set dept='Private' where empno in (3,4);
+
+alter table employeee add dept varchar2(10);
+
+select * from employeee;
+
+alter table employeee rename to hydemployeee;
+
+select dept,min(salary) from hydemployeee group by dept;
+select dept,max(salary) from hydemployeee group by dept;
+select avg(salary) from hydemployeee where dept='Govt';
+select avg(salary) from hydemployeee where dept='Private';
+
+select count(empno) from hydemployeee; 
+select * from hydemployeee order by salary asc;
+
+select * from hydemployeee where salary=(select salary from (select distinct salary from hydemployeee order by salary asc)where rownum<=3 minus select salary from (select distinct salary from hydemployeee order by salary asc)where rownum<=2); 
+
+alter table hydemployeee add taxpercent number,taxamount number,gross
+
+select * from hydemployeee;
+
+select unique salary from hydemployeee;
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+create table location(empno number references hydemployeee,locid number,state varchar2(10),city varchar2(10));
+
+insert into location values(3,50004,'TS','MGBS');
+
+delete location where empno=1;
+update location set locid=500003 where city='CHARMINAR';
+select * from location;
+
+alter table location add roadno number;
+update location set roadno='78' where locid='500004';
+
+alter table location rename to emplocation;
+select * from emplocation;
+
+select count(empno) from emplocation; 
+
+select a.empno,a.name,a.salary,a.designation,a.dept,b.locid,b.state,b.city,b.roadno from hydemployeee a,emplocation b where a.empno=b.empno(+);
+
+

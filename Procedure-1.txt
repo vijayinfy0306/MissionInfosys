@@ -1,0 +1,35 @@
+---------------------- DELETING A PARTICULAR THING FROM PROCEDURE--------------------------------
+
+create table emp(no int,name varchar2(10),job varchar2(10));
+insert into emp values(3,'Durga','manager');
+
+select * from emp;
+
+--------------------CREATING A PROCEDURE---------------------
+
+create or replace procedure del_manager is
+begin
+delete from emp where job='IT';
+end;
+
+-------------------- EXECUTING A PROCEDURE----------------
+
+begin
+del_manager;
+end
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<2nd PART>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+create or replace procedure insert_employee(no IN NUMBER,name IN CHAR,job IN CHAR) is
+begin
+insert into emp values(no,name,job);
+end
+
+begin
+ insert_employee(4,'BOBBY','govt');
+end
+
+select * from emp;
+

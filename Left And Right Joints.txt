@@ -1,0 +1,30 @@
+/////// LEFT JOINT
+
+create table stud(sid number,sname varchar2(50),address varchar2(50));
+insert into stud values(4,'avinash','delhi');
+select * from stud;
+create table cour(cid number,cname varchar2(50),sid number);
+insert into cour values(103,'dbms','3');
+select * from cour;
+
+select a.sid,a.sname,a.address,b.cid,b.cname from stud a LEFT JOIN cour b ON a.sid=b.sid(+);
+-----------------------------------------------------------------------------------------------------------------------------
+
+/////// RIGHT JOINT
+
+
+create table stud(sid number,sname varchar2(50),address varchar2(50));
+insert into stud values(4,'avinash','delhi');
+select * from stud;
+create table cour(cid number,cname varchar2(50),sid number);
+insert into cour values(105,'c','5');
+select * from cour;
+
+select a.sid,a.sname,a.address,b.cid,b.cname from stud a RIGHT JOIN cour b ON a.sid(+)=b.sid;
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+/////// ORDER BY
+
+select * from stud order by sname;   ///// AUTOMATICALLY PRINT IN ASCENDING ORDER WHEN WE USE order by;
+select * from stud order by sname desc;  ///// NAME SHOULD BE PRINTED IN DESCENDING ORDER;

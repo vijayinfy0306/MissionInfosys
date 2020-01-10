@@ -1,0 +1,7 @@
+create table Games(playerno number,playername varchar2(50),gamename varchar2(50),gametype varchar2(50),discount number,amount number)
+insert into Games values(2,'Jai','Ludo','Offline',15,500);
+update Games set playername='Vijay', gamename='PubG' where playerno=1;
+alter table Games add finalamount number;
+update Games set finalamount=((100-discount)/100)*amount where playerno in (1,2);
+select * from Games;
+commit;

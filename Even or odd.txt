@@ -1,0 +1,33 @@
+---------------------------------------------EVEN ODD------------------------------------------
+
+create or replace function evenodd(i number) return char is
+begin
+if(i mod 2=0)then
+return 'even';
+else
+return 'odd';
+end if;
+end
+-----------------------------------------------OR-------------------------------------
+
+select evenodd(5) from dual;
+
+-----------------------------------------------OR-------------------------------------
+declare 
+i number;
+z varchar2(50);
+begin
+i:=:i;
+z:=evenodd(i);
+dbms_output.put_line('number is:'|| i||' '||z);
+end
+-----------------------------------------------OR---------------------------------------
+
+declare 
+i number:=5;
+z varchar2(50);
+begin
+z:=evenodd(i);
+dbms_output.put_line('number is:'|| i||' '||z);
+end
+------------------------------------------------------------------------------------------

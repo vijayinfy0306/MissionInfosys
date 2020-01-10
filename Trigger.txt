@@ -1,0 +1,43 @@
+CREATE OR REPLACE TRIGGER t1 
+BEFORE INSERT ON hydemployee
+BEGIN
+IF(TO_CHAR(SYSDATE,'DY')IN('SAT','SUN')) OR 
+(TO_CHAR(SYSDATE,'HH24:MI') NOT BETWEEN '8:00' AND '15')
+THEN RAISE_APPLICATION_ERROR(-20500,'You may insert into employees table only during business hours');
+END IF;
+END;
+
+insert into hydemployee values(5,'MALLIK',50000);
+
+select * from hydemployee;
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+CREATE OR REPLACE TRIGGER t1 
+BEFORE DELETE ON hydemployee 
+BEGIN
+IF(TO_CHAR(SYSDATE,'DY')IN('SAT','SUN')) OR 
+(TO_CHAR(SYSDATE,'HH24:MI') NOT BETWEEN '08' AND '15')
+THEN RAISE_APPLICATION_ERROR(-20500,'You may insert into employees table only during business hours');
+END IF;
+END;
+
+delete hydemployee where no=5;
+
+select * from hydemployee;
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+CREATE OR REPLACE TRIGGER t1 
+AFTER DELETE ON hydemployee 
+BEGIN
+IF(TO_CHAR(SYSDATE,'DY')IN('SAT','SUN')) AND
+(TO_CHAR(SYSDATE,'HH24:MI')  BETWEEN '08' AND '15')
+THEN RAISE_APPLICATION_ERROR(-20500,'You may insert into employees table only during business hours');
+END IF;
+END;
+
+delete hydemployee where no=5;
+
+select * from hydemployee;

@@ -1,0 +1,16 @@
+create table stud(sid number,sname varchar2(50),address varchar2(50));
+insert into stud values(3,'krishna','chennai');
+select * from stud;
+create table cour(cid number,cname varchar2(50),sid number);
+insert into cour values(103,'dbms','3');
+select * from cour;
+
+//// joining of tables:
+
+select a.sid,a.sname,a.address,b.cid,b.cname from stud a,cour b where a.sid=b.sid;
+         or
+select stud.sid,stud.sname,stud.address,cour.cid,cour.cname from stud,cour where stud.sid=cour.sid;
+         or
+select a.sid,a.sname,a.address,b.cid,b.cname from stud a INNER JOIN cour b ON a.sid=b.sid;
+
+

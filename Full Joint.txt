@@ -1,0 +1,25 @@
+create table hydemp(no int,name varchar2(50),salary float);
+insert into hydemp values(3,'Jaya',25000);
+update hydemp set salary=48000 where no=3;
+select * from hydemp;
+
+create table job(jobname varchar2(50),minsal float,maxsal float);
+insert into job values('Manager',45000,55000);
+select * from job;
+
+select a.no,a.name,a.salary,b.jobname,b.minsal,b.maxsal from hydemp a,job b where a.salary between b.minsal and b.maxsal; 
+
+            or
+
+select a.no,a.name,a.salary,b.jobname,b.minsal,b.maxsal from hydemp a,job b where b.minsal < a.salary order by a.name;
+ 
+            or 
+
+select a.no,a.name,a.salary,b.jobname,b.minsal,b.maxsal from hydemp a,job b where b.minsal < a.salary order by a.name desc;
+
+            or
+
+select a.no,a.name,a.salary,b.jobname,b.minsal,b.maxsal from hydemp a,job b where b.minsal > a.salary order by a.name
+
+
+

@@ -1,0 +1,71 @@
+-----------------------------------------------------------------------------------------------
+create or replace function empdes(salary number) return varchar2 is
+begin
+if(salary<=5000)then
+return 'clerk';
+elsif(salary<=7000)then
+return 'supervisior';
+elsif(salary<=10000)then
+return 'officer';
+elsif(salary<=13000)then
+return 'manager';
+else
+return 'CEO';
+end if;
+end;
+
+select empdes(15000)from dual;
+
+
+---------------------------AREA OF CIRCLE-------------------------------------------------------------
+
+create or replace function AOC(radius number)return float is
+pi constant number:=3.14;   
+begin
+return pi*radius*radius;
+end
+
+select AOC(7) from dual;
+
+declare
+radius number;
+A number;
+begin
+radius:=:radius;
+A:=AOC(radius);
+dbms_output.put_line('circle:'|| A);
+end
+--------------------------SIMPLE INTEREST-------------------------------------------------------------
+
+create or replace function SI(p number,t number,r number) return number is
+begin
+return (p*t*r)/100;
+end
+
+-----------------------------OR----------------------------------------------------------------------
+
+select SI(50,2,5) from dual;
+
+-----------------------------OR----------------------------------------------------------------------
+
+declare
+z number;
+p number;
+t number;
+r number;
+begin
+p:=:p;
+t:=:t;
+r:=:r;
+z:= SI(p,t,r);
+dbms_output.put_line('Simple Interest:'|| z );
+end
+
+-----------------------------OR-------------------------------------------------------------------------
+
+declare
+z number;
+begin
+z:= SI(50,2,5);
+dbms_output.put_line('Simple Interest:'|| z );
+end

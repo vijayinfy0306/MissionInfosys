@@ -1,0 +1,53 @@
+drop table bank;
+create table Infy3(employno number,employname char(50),email varchar2(50),dob date,salary number(8,2))
+   insert into Infy3 values(3,'Prasad','prasad@infy.com','30-Jun-1998',45000.00);
+       select employno,employname,email,dob,salary+1000 from Infy3;
+       select employno,employname,email,dob,round(salary/3,2) from Infy3;
+
+DUPLICATE TABLE:
+
+       create table perdalsal as select employno,employname,email,dob,round(salary/30,2) as perdayamount from Infy3;
+       create table annualsal as select employno,employname,email,dob,salary*12 as annualamount from Infy3;
+       drop table annualsal;
+
+       select * from perdalsal;
+
+ 
+       select * from annualsal;
+
+       insert into Infy3(employno,employname,email,dob) values(4,'sai','sai@infy.com','1-jan-1997');
+
+       update Infy3 set salary=50000 where employno=4;
+
+COMPARISON TABLE: 
+
+    select * from Infy3 where salary > 30000;
+
+    select * from Infy3 where salary < 30000;
+
+    select * from Infy3 where salary <= 30000;
+
+    select * from Infy3 where salary between 30000 and 50000;
+
+NAME SEARCHING:
+
+   select * from Infy3 where salary>=1000 and email like 'v%';
+   select * from Infy3 where salary>=1000 and email like '_r%';
+   select * from Infy3 where salary>=1000 and employname like '%y';
+   select * from Infy3 where employno in (1,2);
+   select * from Infy3 where salary >any(30000);
+   select * from Infy3 where salary >some(25000);
+   select * from Infy3 where salary >=all(30000);
+
+
+RENAME COLUMN 
+
+   Alter table Infy3 REnaME column employ_no to employno;
+   alter table Infy4 rename to Infy5;
+   alter table Infy5 rename to Infy3;
+
+delete Infy3 where employno=4;
+rollback;
+savepoint a1;
+delete Infy3 where employno=3;
+commit;

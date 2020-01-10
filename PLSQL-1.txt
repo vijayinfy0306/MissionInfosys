@@ -1,0 +1,127 @@
+///// SUM OF TWO NUMBERS:
+
+declare
+a number:=5;
+b number:=6;
+c number;
+begin
+c:=a+b;
+dbms_output.put_line('output is:'||c);
+end;
+
+/////// SUM OF 2 NUMBERS FROM INPUT:
+
+declare
+a number;
+b number;
+c number;
+begin
+A:=:A;  -----NOT A CASE SENSITIVE:
+B:=:B;  -----NOT A CASE SENSITIVE:
+c:=a+b;
+dbms_output.put_line('output is:'||c);
+end;
+
+
+///////  AVERAGE OF 5 NUMBERS
+
+declare
+a number;
+b number;
+c number;
+d number;
+e number;
+f number;
+begin
+a:=:a;
+b:=:b;
+c:=:c;
+d:=:d;
+e:=:e;
+f:=(a + b + c + d + e)/5;
+dbms_output.put_line('average is:'||f);
+end;
+
+/////// TESTING
+
+declare
+a number;
+b number;
+c float;
+begin
+a:=:a;
+b:=:b;
+c:=a/b;
+dbms_output.put_line('output is:'||c);
+end;
+
+
+/////// GREATEST VALUE USING TWO VALUES:
+
+declare
+a number;
+b number;
+c number;
+begin
+a:=:a;
+b:=:b;
+if(a>b)then
+dbms_output.put_line('greater value is:'||a);
+else
+dbms_output.put_line('greater vale is:'||b);
+end if;
+end
+
+
+//////// GREATER VALUE AMONG 3 NUMBERS:
+
+declare
+a number;
+b number;
+c number:=15;
+begin
+a:=:a;
+b:=:b;
+if(a>b) and (a>c) then
+dbms_output.put_line('greater value is:'||a);
+elsif(b>a) and (b>c) then
+dbms_output.put_line('greater vale is:'||b);
+else
+dbms_output.put_line('greater vale is:'||c);
+end if;
+end
+
+/////// EVEN OR NOT
+
+declare
+a number;
+begin
+a:=:a;
+if(a mod 2 = 0) then
+dbms_output.put_line('even number is :'||a);
+else 
+dbms_output.put_line('odd number is :'||a);
+end if;
+end
+
+/////// PRIME OR NOT
+
+declare
+c number:=1;
+n number;
+i number;
+begin
+n:=:n;
+for(i=2;i<n/2;i++)
+if (n mod i = 0)then
+c= c+1;
+break;
+end if;
+end for;
+if(c=1)
+dbms_output.put_line('even number is :'||a);
+else 
+dbms_output.put_line('odd number is :'||a);
+end if;
+end
+

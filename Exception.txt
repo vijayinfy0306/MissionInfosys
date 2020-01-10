@@ -1,0 +1,14 @@
+create table hydemployee(no int,name varchar2(50),salary number);
+insert into hydemployee values(2,'krishna',25000);
+select * from hydemployee;
+
+
+begin 
+update hydemployee set salary=40000 where no=1;
+commit;
+update hydemployee set salary=35000 where no=2;
+insert into hydemployee values(3,'babu',30000);
+exception
+when others then
+commit;
+end
